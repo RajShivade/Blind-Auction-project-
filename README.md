@@ -1,0 +1,106 @@
+# Bidding System Documentation:
+
+- Overview:
+
+This Python script implements a simple bidding system where multiple users can place their bids, and the system will determine the highest bidder at the end. The script uses console input and output to interact with users.
+
+# Project Description: 
+
+The Bidding System is a Python-based console application designed to simulate a blind auction process. In a blind auction, multiple bidders submit their bids without knowing the bids of the other participants. This project provides a simple and interactive way to conduct such an auction, making it an excellent tool for learning about user input handling, dictionaries, and basic control flow in Python.
+
+# Imports :- 
+
+import os:-
+
+from art import logo:-
+
+1. os: This module provides a way to use operating system-dependent functionality, such as clearing the console.
+
+2. logo from art: This imports a predefined logo or banner to be displayed when the script starts. 
+
+# Display Logo:- 
+
+print(logo)
+
+~ Displays the logo imported from the art module.
+
+# Variables:- 
+
+bids = {}
+bidding_finished = False
+
+1. bids: A dictionary to store the bids, with bidder names as keys and bid amounts as values.
+
+2. bidding_finished: A boolean flag to control the main loop, indicating whether the bidding process has finished.
+
+# Functions:- 
+
+find_highest_bidder(bidding_record):
+
+def find_highest_bidder(bidding_record):
+    highest_bid = 0
+    winner = ""
+    for bidder in bidding_record:
+        bid_amount = bidding_record[bidder]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder
+    print(f"The winner is {winner} with a bid of ${highest_bid}")
+
+~ This function takes a dictionary bidding_record as an argument.
+
+~ It iterates over the dictionary to find the highest bid and the corresponding bidder.
+
+~ Finally, it prints the name of the highest bidder and the bid amount.
+
+clear_console()
+def clear_console():
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
+
+~ This function clears the console screen. It checks the operating system using os.name and executes the appropriate command to clear the screen (cls for Windows, clear for macOS and Linux). 
+
+# Main Loop:- 
+
+while not bidding_finished:
+    name = input("What is your name?: ")
+    price = int(input("What is your bid?: $"))
+    bids[name] = price
+    should_continue = input("Are there any other bidders? Type 'yes' or 'no'.\n")
+    if should_continue == "no":
+        bidding_finished = True
+        find_highest_bidder(bids)
+    elif should_continue == "yes":
+        clear_console()
+
+~ This loop continues to run until bidding_finished is set to True.
+
+~It prompts the user for their name and bid amount, storing these in the bids dictionary.
+
+~It then asks if there are any other bidders.
+
+~If the user types "no", the loop ends, and the script calls find_highest_bidder(bids) to determine and print the highest bid.
+
+~If the user types "yes", the console is cleared using clear_console(), and the loop continues for the next bidder.
+
+# Example Usage:- 
+
+- The script starts and displays a logo.
+
+- The first user is prompted for their name and bid amount.
+
+- The script asks if there are more bidders.
+
+- If there are more bidders, the console is cleared, and the next user can place their bid.
+
+- Once all bids are collected, the script announces the highest bidder.
+
+# Additional Notes:-
+
+- Ensure the art module is installed and contains a logo to be imported.
+
+- The script is designed to be run in a console or terminal environment.
+
+- The clearing of the console is dependent on the operating system.
